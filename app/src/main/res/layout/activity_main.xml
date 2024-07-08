@@ -4,15 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.ui.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/cyan"
+        android:text="@string/currency_converter"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/myBalances"/>
 
+    <TextView
+        android:id="@+id/myBalances"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:text="@string/my_balances"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/horizontalScrollView"/>
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:foregroundGravity="center_vertical"
+        app:layout_constraintStart_toStartOf="@id/myBalances"
+        app:layout_constraintTop_toBottomOf="@id/myBalances">
+
+        <TextView
+            android:id="@+id/currencies_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/currencyExchange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="15dp"
+        android:text="@string/currency_exchange"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/horizontalScrollView"
+        app:layout_constraintStart_toStartOf="@id/myBalances" />
+
+    <com.test.exchangeratetesttask.presentation.ui.RcvSellView
+        android:id="@+id/sell_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        app:layout_constraintTop_toBottomOf="@id/currencyExchange"
+        app:layout_constraintBottom_toTopOf="@id/sell_layout" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sell_layout"
+        app:layout_constraintBottom_toBottomOf="@id/rcv_layout" />
+
+    <com.test.exchangeratetesttask.presentation.ui.RcvSellView
+        android:id="@+id/rcv_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/divider"/>
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="@string/submit"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:background="@drawable/submit_button_shape"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rcv_layout" />
+
+    <FrameLayout
+        android:id="@+id/loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:translationZ="90dp">
+        <ProgressBar
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:indeterminateTint="@color/cyan"
+            android:layout_gravity="center" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
